@@ -1,11 +1,11 @@
 package discord
 
 import (
-	"discat/catapi"
 	"fmt"
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
+	"github.com/Fl0GUI/discat/catapi"
 )
 
 var breedMap = make(map[string]string)

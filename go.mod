@@ -1,4 +1,4 @@
-module discat
+module github.com/Fl0GUI/discat
 
 go 1.20
 

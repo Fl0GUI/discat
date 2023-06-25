@@ -2,9 +2,10 @@ package main
 
 import (
 	"context"
-	"discat/discord"
 	"flag"
 	"log"
+
+	"github.com/Fl0GUI/discat/discord"
 )
 
 var reset = flag.Bool("reset", false, "reset the discord bot commands")

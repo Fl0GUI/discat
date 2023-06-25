@@ -1,12 +1,12 @@
 package discord
 
 import (
-	"discat/catapi"
 	"log"
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/lithammer/fuzzysearch/fuzzy"
+	"github.com/Fl0GUI/discat/catapi"
 )
 
 const choiceLimit = 25

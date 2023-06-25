@@ -1,6 +1,6 @@
 version: "2.4"
 services:
   discat:
-    image: discat
+    image: golang:1.20.2
     build: .
     env_file: .env
