@@ -61,7 +61,7 @@ func respondWithCat(s *discordgo.Session, m *discordgo.InteractionCreate) {
 		respData = "Something went wrong :3"
 		log.Println("Could not get some cats:", err)
 	} else {
-		respData = cats[0].Url
+		respData = cats[0].Url // TODO check for cats length
 	}
 	resp = discordgo.WebhookEdit{
 		Content: &respData,
