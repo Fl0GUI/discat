@@ -19,6 +19,8 @@ var (
 type Client struct {
 	*discordgo.Session
 
+	toClose []func()
+
 	appId, guildId string
 }
 
@@ -51,13 +53,28 @@ func New(ctx context.Context) (*Client, error) {
 		return client, err
 	}
 
-	go client.onClose(
-		ctx,
+	client.toClose = []func(){
 		client.AddHandler(handleCat),
 		client.AddHandler(handleBreed),
-	)
+		func() {
+			for client.Session.Close() != nil {
+			}
+		},
+	}
 
 	return client, err
+}
+
+func (c *Client) Close() {
+	grp := sync.WaitGroup{}
+	for _, f := range c.toClose {
+		grp.Add(1)
+		go func() {
+			f()
+			grp.Done()
+		}()
+	}
+	grp.Wait()
 }
 
 func (c *Client) RegisterCommands() error {
@@ -80,14 +97,6 @@ func (c *Client) RegisterCommands() error {
 
 func envError(env string) error {
 	return errors.New(fmt.Sprintf("%s not set", env))
-}
-
-func (c *Client) onClose(ctx context.Context, toClose ...func()) {
-	for _ = range ctx.Done() {
-	}
-	for _, f := range toClose {
-		f()
-	}
 }
 
 func (c *Client) ResetCommands() error {
