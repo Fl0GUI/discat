@@ -3,4 +3,4 @@ services:
   discat:
     image: golang:1.20.2
     env_file: .env
-    command: go run github.com/Fl0GUI/discat@v1.0.1
+    command: go run github.com/Fl0GUI/discat@v1.0.2
