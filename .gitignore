@@ -1,2 +1,5 @@
 #juicy secrets
 .env
+
+# assets
+assets/custom/
